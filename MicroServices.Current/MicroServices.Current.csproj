@@ -14,6 +14,9 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.ServiceFabric" Version="5.7.198" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.7.198" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.7.198" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.7.198" />
   </ItemGroup>
 
   <ItemGroup>
