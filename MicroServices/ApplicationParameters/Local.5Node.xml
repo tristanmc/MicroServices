@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/MicroServices" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="Shell_PartitionCount" Value="1" />
+    <Parameter Name="Shell_MinReplicaSetSize" Value="3" />
+    <Parameter Name="Shell_TargetReplicaSetSize" Value="3" />
     <Parameter Name="MicroServices.Current_PartitionCount" Value="1" />
-    <Parameter Name="MicroServices.Current_MinReplicaSetSize" Value="3" />
-    <Parameter Name="MicroServices.Current_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="MicroServices.Current_MinReplicaSetSize" Value="1" />
+    <Parameter Name="MicroServices.Current_TargetReplicaSetSize" Value="1" />
   </Parameters>
 </Application>

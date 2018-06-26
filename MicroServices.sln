@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "MicroServices", "MicroServices\MicroServices.sfproj", "{B3C8E5DD-82C1-41F5-84D0-149473ECA305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.Current", "MicroServices.Current\MicroServices.Current.csproj", "{2C0C6DB2-34E1-41BF-8C8A-3B29BDE3227E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Current", "MicroServices.Current\MicroServices.Current.csproj", "{2C0C6DB2-34E1-41BF-8C8A-3B29BDE3227E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,12 @@ Global
 		{2C0C6DB2-34E1-41BF-8C8A-3B29BDE3227E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C0C6DB2-34E1-41BF-8C8A-3B29BDE3227E}.Release|x64.ActiveCfg = Release|Any CPU
 		{2C0C6DB2-34E1-41BF-8C8A-3B29BDE3227E}.Release|x64.Build.0 = Release|Any CPU
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Debug|x64.ActiveCfg = Debug|x64
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Debug|x64.Build.0 = Debug|x64
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Release|Any CPU.ActiveCfg = Release|x64
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Release|x64.ActiveCfg = Release|x64
+		{74C30ECB-9FF9-4270-8AB6-C7A719B378CD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
