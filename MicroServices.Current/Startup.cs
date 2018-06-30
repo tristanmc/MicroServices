@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Autofac;
+using Persistence;
 
 namespace MicroServices.Current
 {
@@ -24,6 +20,11 @@ namespace MicroServices.Current
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<Repository>().As<IRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

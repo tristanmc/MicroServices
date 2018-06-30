@@ -8,6 +8,11 @@ using System.Threading;
 using System.Fabric;
 using Microsoft.Owin.Hosting;
 using Owin;
+using Nancy.Bootstrapper;
+using Nancy;
+using Nancy.Bootstrappers.Autofac;
+using Autofac;
+using Persistence;
 
 namespace Shell
 {
@@ -57,6 +62,16 @@ namespace Shell
         public void Configuration(IAppBuilder app)
         {
             app.UseNancy();
+        }
+    }
+
+    public class NancyBootstrapper : AutofacNancyBootstrapper
+    {
+
+        protected override void ConfigureApplicationContainer(ILifetimeScope existingContainer)
+        {
+            existingContainer.Update(b => b.RegisterType<Repository>().As<IRepository>());
+            base.ConfigureApplicationContainer(existingContainer);
         }
     }
 }

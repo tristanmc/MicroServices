@@ -11,6 +11,7 @@ using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.ServiceFabric.Data;
+using Autofac.Extensions.DependencyInjection;
 
 namespace MicroServices.Current
 {
@@ -39,7 +40,7 @@ namespace MicroServices.Current
                         return new WebHostBuilder()
                                     .UseKestrel()
                                     .ConfigureServices(
-                                        services => services
+                                        services => services.AddAutofac()
                                             .AddSingleton<StatefulServiceContext>(serviceContext)
                                             .AddSingleton<IReliableStateManager>(this.StateManager))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
