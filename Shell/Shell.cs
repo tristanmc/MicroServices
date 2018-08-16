@@ -15,6 +15,9 @@ namespace Shell
     /// </summary>
     internal sealed class Shell : StatefulService
     {
+        private NancyListener _listener;
+        //private MessageBusListener _bus;
+
         public Shell(StatefulServiceContext context)
             : base(context)
         { }
@@ -28,10 +31,18 @@ namespace Shell
         /// <returns>A collection of listeners.</returns>
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
+            //_bus = new MessageBusListener(this.StateManager);
             return new ServiceReplicaListener[]
                 {
-                    new ServiceReplicaListener(state => new NancyListener(state))
+                    new ServiceReplicaListener(Create),
+              //      new ServiceReplicaListener(s => _bus)
                 };
+        }
+
+        private NancyListener Create(StatefulServiceContext state)
+        {
+            _listener = new NancyListener(state);
+            return _listener;
         }
 
         /// <summary>
@@ -41,31 +52,34 @@ namespace Shell
         /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service replica.</param>
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
+            await _listener.RunAsync(this.StateManager);
+            //await _bus.RunAsync();
+
             // TODO: Replace the following sample code with your own logic 
             //       or remove this RunAsync override if it's not needed in your service.
 
-            //var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+            //    var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
 
-            //while (true)
-            //{
-            //    cancellationToken.ThrowIfCancellationRequested();
-
-            //    using (var tx = this.StateManager.CreateTransaction())
+            //    while (true)
             //    {
-            //        var result = await myDictionary.TryGetValueAsync(tx, "Counter");
+            //        cancellationToken.ThrowIfCancellationRequested();
 
-            //        ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
-            //            result.HasValue ? result.Value.ToString() : "Value does not exist.");
+            //        using (var tx = this.StateManager.CreateTransaction())
+            //        {
+            //            var result = await myDictionary.TryGetValueAsync(tx, "Counter");
 
-            //        await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
+            //            ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
+            //                result.HasValue ? result.Value.ToString() : "Value does not exist.");
 
-            //        // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
-            //        // discarded, and nothing is saved to the secondary replicas.
-            //        await tx.CommitAsync();
+            //            await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
+
+            //            // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
+            //            // discarded, and nothing is saved to the secondary replicas.
+            //            await tx.CommitAsync();
+            //        }
+
+            //        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             //    }
-
-            //    await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-            //}
         }
     }
 }

@@ -4,6 +4,7 @@
     <TargetFramework>net47</TargetFramework>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,9 @@
     <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.7.198" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.7.198" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.7.198" />
+    <PackageReference Include="NServiceBus" Version="6.4.3" />
+    <PackageReference Include="NServiceBus.Autofac" Version="6.0.0" />
+    <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MessageDefinitions\MessageDefinitions.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 

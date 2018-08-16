@@ -20,6 +20,8 @@ namespace MicroServices.Current
     /// </summary>
     internal sealed class Current : StatefulService
     {
+        private MessageBusListener _bus;
+
         public Current(StatefulServiceContext context)
             : base(context)
         { }
@@ -30,6 +32,8 @@ namespace MicroServices.Current
         /// <returns>The collection of listeners.</returns>
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
+            _bus = new MessageBusListener(this.StateManager);
+
             return new ServiceReplicaListener[]
             {
                 new ServiceReplicaListener(serviceContext =>
@@ -48,8 +52,14 @@ namespace MicroServices.Current
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
                                     .UseUrls(url)
                                     .Build();
-                    }))
+                    }), "MvcListener"),
+                new ServiceReplicaListener(s => _bus.WithContext(s), "BusListener"),
             };
+        }
+
+        protected override async Task RunAsync(CancellationToken cancellationToken)
+        {
+            await _bus.RunAsync();
         }
     }
 }

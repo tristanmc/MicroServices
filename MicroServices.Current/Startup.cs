@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Autofac;
 using Persistence;
+using MicroServices.Current.Controllers;
 
 namespace MicroServices.Current
 {
@@ -24,7 +25,7 @@ namespace MicroServices.Current
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<Repository>().As<IRepository>();
+            builder.RegisterType<Repository<long, Sink>>().As<IRepository<long, Sink>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
